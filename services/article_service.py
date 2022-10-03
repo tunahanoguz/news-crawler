@@ -1,5 +1,5 @@
 from context_managers import DbContextManager
-from models import Category, Article
+from models import Article
 
 
 class ArticleService:
@@ -12,10 +12,10 @@ class ArticleService:
             query = """
                 CREATE TABLE IF NOT EXISTS articles (
                     id SERIAL PRIMARY KEY,
-                    title TEXT[] NOT NULL,
-                    description TEXT[] NOT NULL,
-                    content TEXT[] NOT NULL,
-                    tags TEXT[],
+                    title TEXT NOT NULL,
+                    description TEXT NOT NULL,
+                    content TEXT NOT NULL,
+                    tags TEXT,
                     link VARCHAR(255) NOT NULL,
                     category VARCHAR(255) NOT NULL,
                     company VARCHAR(255) NOT NULL,
@@ -39,8 +39,7 @@ class ArticleService:
             cur = db.cursor()
             cur.execute(query)
             rows = cur.fetchall()
-            articles = [Article(row[1], row[2], row[3], row[4], row[5],
-                                Category(row[6], row[7]), row[8], row[0])
+            articles = [Article(row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[0])
                         for row in rows]
             cur.close()
             return articles
@@ -57,7 +56,7 @@ class ArticleService:
             cur = db.cursor()
             cur.execute(query, (article_id,))
             row = cur.fetchone()
-            article = Article(row[1], row[2], row[0], row[3], row[4], Category(row[5], row[6]), row[7], row[8])
+            article = Article(row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[0])
             cur.close()
             return article
 

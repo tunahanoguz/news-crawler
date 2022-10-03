@@ -161,3 +161,7 @@ cython_debug/
 
 # For visual studio code
 .vscode/
+
+*.csv
+
+most_common_thousand_words.txt

@@ -2,3 +2,4 @@ feedparser
 goose3
 nltk
 psycopg2
+openpyxl

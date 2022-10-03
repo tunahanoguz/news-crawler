@@ -7,7 +7,7 @@ from goose3 import Article as GooseArticle
 from exceptions import ArticleNotExtractedException, EmptyArticleTitleException, EmptyArticleContentException,\
     InvalidPublishedDateException
 from models import NewsLink
-from services.crawler import CrawlerService
+from services import CrawlerService
 
 
 class TestCrawlerService(unittest.TestCase):

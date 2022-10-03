@@ -43,9 +43,9 @@ class CrawlerService:
             if extracted_article.cleaned_text is None or not extracted_article.cleaned_text:
                 raise EmptyArticleContentException
 
-            return Article(title=self._parse_news_txt(extracted_article.title),
-                           description=self._parse_news_txt(extracted_article.meta_description),
-                           content=self._parse_news_txt(extracted_article.cleaned_text),
+            return Article(title=extracted_article.title,
+                           description=extracted_article.meta_description,
+                           content=extracted_article.cleaned_text,
                            tags=extracted_article.tags,
                            link=news_link.link,
                            category=news_link.category,
@@ -55,6 +55,16 @@ class CrawlerService:
             raise
         except Exception:
             raise ArticleNotExtractedException
+
+    def parse_news_article(self, article: Article):
+        return Article(title=self._parse_news_txt(article.title),
+                       description=self._parse_news_txt(article.description),
+                       content=self._parse_news_txt(article.content),
+                       tags=', '.join(article.tags),
+                       link=article.link,
+                       category=article.category,
+                       company=article.company,
+                       published_date=article.published_date)
 
     @staticmethod
     def _parse_published_date(date):
@@ -83,7 +93,7 @@ class CrawlerService:
 
     @staticmethod
     def _remove_most_common_thousand_words_from_txt(text: str):
-        with open(os.path.join(os.path.dirname(__file__), 'most_common_thousand_words.txt'), 'r') as f:
+        with open(os.path.join(os.path.dirname(__file__), '../most_common_thousand_words.txt'), 'r') as f:
             common_words = f.readlines()
             common_words.extend([f"{word}s" for word in common_words])
             common_words.extend([f"{word}d" for word in common_words])

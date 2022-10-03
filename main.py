@@ -1,6 +1,5 @@
 from models import NewsCompany, Category, FeedLink
-from services.crawler import CrawlerService
-from services.db import ArticleService
+from services import CrawlerService, ArticleService, FileWriterService
 
 news_companies = [
     NewsCompany("Reuters Agency", "reutersagency"),
@@ -148,14 +147,37 @@ categories = [
     )
 ]
 
-crawler_service = CrawlerService()
-news_links = crawler_service.get_news_links(categories)
 
-article_service = ArticleService()
+def get_news_and_insert_to_db():
+    crawler_service = CrawlerService()
+    news_links = crawler_service.get_news_links(categories)
 
-for news_link in news_links:
-    try:
-        article_service.create(crawler_service.get_news_article(news_link,
-                                                                crawler_service.extract_news_article(news_link)))
-    except Exception as e:
-        print(e)
+    article_service = ArticleService()
+
+    for news_link in news_links:
+        try:
+            article = crawler_service.get_news_article(news_link, crawler_service.extract_news_article(news_link))
+            article_service.create(article)
+        except Exception as e:
+            print(e)
+
+
+def get_all_news_with_header_and_data():
+    article_service = ArticleService()
+    news_articles = article_service.get_all()
+
+    excel_headers = [list(article.__dict__.keys()) for article in news_articles][0]
+    excel_data = [list(article.__dict__.values()) for article in news_articles]
+
+    return {'headers': excel_headers, 'data': excel_data}
+
+
+def create_excel_and_csv_files_for_all_news(headers: [str], data: []):
+    file_writer_service = FileWriterService()
+    file_writer_service.create_excel_file(headers, data)
+    # file_writer_service.create_csv_file(headers, data)
+
+
+get_news_and_insert_to_db()
+headers_and_data = get_all_news_with_header_and_data()
+create_excel_and_csv_files_for_all_news(headers_and_data['headers'], headers_and_data['data'])
