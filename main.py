@@ -166,18 +166,25 @@ def get_all_news_with_header_and_data():
     article_service = ArticleService()
     news_articles = article_service.get_all()
 
-    excel_headers = [list(article.__dict__.keys()) for article in news_articles][0]
+    headers = [list(article.__dict__.keys()) for article in news_articles][0]
     excel_data = [list(article.__dict__.values()) for article in news_articles]
+    csv_data = [{header: article.__getattribute__(header) for header in headers} for article in news_articles]
+    print(csv_data)
 
-    return {'headers': excel_headers, 'data': excel_data}
+    return {'headers': headers, 'excel_data': excel_data, 'csv_data': csv_data}
 
 
-def create_excel_and_csv_files_for_all_news(headers: [str], data: []):
+def create_excel_file_for_all_news(headers: [str], data: []):
     file_writer_service = FileWriterService()
     file_writer_service.create_excel_file(headers, data)
-    # file_writer_service.create_csv_file(headers, data)
+
+
+def create_csv_file_for_all_news(headers: [str], data: []):
+    file_writer_service = FileWriterService()
+    file_writer_service.create_csv_file(headers, data)
 
 
 get_news_and_insert_to_db()
 headers_and_data = get_all_news_with_header_and_data()
-create_excel_and_csv_files_for_all_news(headers_and_data['headers'], headers_and_data['data'])
+create_excel_file_for_all_news(headers_and_data['headers'], headers_and_data['excel_data'])
+create_csv_file_for_all_news(headers_and_data['headers'], headers_and_data['csv_data'])
