@@ -165,5 +165,6 @@ cython_debug/
 *.csv
 *.xlsx
 .most_common_thousand_words.txt
+most_common_thousand_words.txt
 .data
 data/
