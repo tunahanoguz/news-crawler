@@ -169,7 +169,6 @@ def get_all_news_with_header_and_data():
     headers = [list(article.__dict__.keys()) for article in news_articles][0]
     excel_data = [list(article.__dict__.values()) for article in news_articles]
     csv_data = [{header: article.__getattribute__(header) for header in headers} for article in news_articles]
-    print(csv_data)
 
     return {'headers': headers, 'excel_data': excel_data, 'csv_data': csv_data}
 
@@ -184,7 +183,7 @@ def create_csv_file_for_all_news(headers: [str], data: []):
     file_writer_service.create_csv_file(headers, data)
 
 
-# get_news_and_insert_to_db()
+get_news_and_insert_to_db()
 headers_and_data = get_all_news_with_header_and_data()
 create_excel_file_for_all_news(headers_and_data['headers'], headers_and_data['excel_data'])
 create_csv_file_for_all_news(headers_and_data['headers'], headers_and_data['csv_data'])
