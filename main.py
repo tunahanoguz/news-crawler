@@ -184,7 +184,7 @@ def create_csv_file_for_all_news(headers: [str], data: []):
     file_writer_service.create_csv_file(headers, data)
 
 
-get_news_and_insert_to_db()
+# get_news_and_insert_to_db()
 headers_and_data = get_all_news_with_header_and_data()
 create_excel_file_for_all_news(headers_and_data['headers'], headers_and_data['excel_data'])
 create_csv_file_for_all_news(headers_and_data['headers'], headers_and_data['csv_data'])

@@ -163,5 +163,7 @@ cython_debug/
 .vscode/
 
 *.csv
-
+*.xlsx
 .most_common_thousand_words.txt
+.data
+data/
