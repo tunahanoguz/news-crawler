@@ -2,21 +2,17 @@ It's a project that the news articles that published on most well-known english 
 
 ## News Categories
 
-| Category   |
-|------------|
-| Technology |
-| Politics   |
-| World News |
-| UK News |
-| Asia News |
-| Europe News |
-| Middle East News |
-| Africa News |
-| Americas News |
-| Science |
-| Economy & Finance |
-| Health |
-| Nature & Environment & Energy |
+| Category                             |
+|--------------------------------------|
+| Technology                           |
+| Politics                             |
+| World News                           |
+| UK & Asia & Europe News              |
+| Middle East & Africa & Americas News |
+| Science                              |
+| Economy & Finance                    |
+| Health                               |
+| Nature & Environment & Energy        |
 
 
 ## Requirements
