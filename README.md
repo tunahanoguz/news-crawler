@@ -1,19 +1,13 @@
 It's a project that the news articles that published on most well-known english news sites crawled and saved.
 
 ## News Categories
-
-| Category                             |
-|--------------------------------------|
-| Technology                           |
-| Politics                             |
-| World News                           |
-| UK & Asia & Europe News              |
-| Middle East & Africa & Americas News |
-| Science                              |
-| Economy & Finance                    |
-| Health                               |
-| Nature & Environment & Energy        |
-
+- Technology
+- Politics
+- Economy & Finance
+- Science
+- Health
+- Nature & Environment & Energy
+- World News from different regions
 
 ## Requirements
 - feedparser
