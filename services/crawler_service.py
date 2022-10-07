@@ -60,7 +60,7 @@ class CrawlerService:
         return Article(title=self._parse_news_txt(article.title),
                        description=self._parse_news_txt(article.description),
                        content=self._parse_news_txt(article.content),
-                       tags=', '.join(article.tags),
+                       tags=article.tags,
                        link=article.link,
                        category=article.category,
                        company=article.company,

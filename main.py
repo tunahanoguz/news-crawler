@@ -1,5 +1,5 @@
 from models import NewsCompany, Category, FeedLink
-from services import CrawlerService, ArticleService, FileWriterService
+from services import CrawlerService, ArticleService, ParsedArticleService, FileWriterService
 
 news_companies = [
     NewsCompany("Reuters Agency", "reutersagency"),
@@ -153,11 +153,16 @@ def get_news_and_insert_to_db():
     news_links = crawler_service.get_news_links(categories)
 
     article_service = ArticleService()
+    parsed_article_service = ParsedArticleService()
 
     for news_link in news_links:
         try:
             article = crawler_service.get_news_article(news_link, crawler_service.extract_news_article(news_link))
             article_service.create(article)
+
+            parsed_article = crawler_service.parse_news_article(article)
+            parsed_article_service.create(parsed_article)
+
         except Exception as e:
             print(e)
 
