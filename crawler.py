@@ -1,14 +1,20 @@
 import logging
 from logging.handlers import RotatingFileHandler
+from configs import ConfigFileParser
 from models import NewsCompany, Category, FeedLink
 from services import CrawlerService, ArticleService, ParsedArticleService, FileWriterService
 
 
 class Crawler:
     def __init__(self):
+        self._config_parser = ConfigFileParser('logging_config.ini', 'logging')
+        self._logging_config = self._config_parser.parse()
+
         self._logging = logging.getLogger(__name__)
         self._logging.setLevel(logging.INFO)
-        self._logging_handler = RotatingFileHandler("crawler_log.log", maxBytes=10000, backupCount=5)
+        self._logging_handler = RotatingFileHandler(filename=self._logging_config['file_name'],
+                                                    maxBytes=int(self._logging_config['max_bytes']),
+                                                    backupCount=int(self._logging_config['backup_count']))
         self._logging_formatter = logging.Formatter("%(name)s %(asctime)s %(levelname)s %(message)s")
         self._logging_handler.setFormatter(self._logging_formatter)
         self._logging.addHandler(self._logging_handler)
