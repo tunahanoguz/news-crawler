@@ -24,6 +24,10 @@ pip install -r requirements.txt
 
 There are `configs` folder in root directory of the project. The most **important** configuration file is `database_config.ini` file. You can edit this file to connect to the PostgreSQL database.
 
+## Architecture
+
+![Project architecture](/architecture.png "Project architecture")
+
 ## 🏹 Usage
 
 ```bash
