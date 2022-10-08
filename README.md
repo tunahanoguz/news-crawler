@@ -1,6 +1,6 @@
 It's a project that the news articles that published on most well-known english news sites crawled and saved.
 
-## News Categories
+## 📰 News Categories
 - Technology
 - Politics
 - Economy & Finance
@@ -9,7 +9,7 @@ It's a project that the news articles that published on most well-known english 
 - Nature & Environment & Energy
 - World News from different regions
 
-## Requirements
+## 🔗 Requirements
 - feedparser
 - goose3
 - nltk
@@ -20,6 +20,12 @@ It's a project that the news articles that published on most well-known english 
 pip install -r requirements.txt
 ```
 
-## Configuration
+## 🛠 Configuration
 
 There are `configs` folder in root directory of the project. The most **important** configuration file is `database_config.ini` file. You can edit this file to connect to the PostgreSQL database.
+
+## 🏹 Usage
+
+```bash
+python main.py
+```
