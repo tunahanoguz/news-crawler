@@ -29,3 +29,9 @@ There are `configs` folder in root directory of the project. The most **importan
 ```bash
 python main.py
 ```
+
+or
+
+```bash
+python crawler.py
+```
