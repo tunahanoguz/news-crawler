@@ -35,3 +35,7 @@ or
 ```bash
 python crawler.py
 ```
+
+## 🛡 Legal Notes
+
+This project is purely for educational purposes. The data obtained is not processed anywhere and is not used for commercial purposes.
